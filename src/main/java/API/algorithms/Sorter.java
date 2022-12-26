@@ -1,4 +1,4 @@
-package algorithms;
+package API.algorithms;
 
 /**
  * Sorter.java
@@ -27,6 +27,5 @@ public abstract class Sorter {
         Object tmp = a[i];
         a[i] = a[j];
         a[j] = tmp;
-    }    
-    public abstract <T extends Comparable<? super T>> void sort(T[] a);
+    }
 }

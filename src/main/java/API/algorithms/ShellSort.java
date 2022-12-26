@@ -1,4 +1,4 @@
-package algorithms;
+package API.algorithms;
 
 /**
  * ShellSort.java
@@ -15,7 +15,6 @@ package algorithms;
 
 public class ShellSort extends Sorter{
 
-    @Override
     public <T extends Comparable<? super T>> void sort(T[] a) {
         int h = 1;
         while((h*3+1) < a.length)

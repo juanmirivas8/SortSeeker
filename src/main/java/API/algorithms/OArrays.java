@@ -4,7 +4,7 @@
  * Copyright 2008 Stijn Strickx, All rights reserved
  */
 
-package algorithms;
+package API.algorithms;
 
 public class OArrays {
     

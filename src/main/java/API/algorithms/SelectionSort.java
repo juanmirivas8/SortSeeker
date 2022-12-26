@@ -1,4 +1,4 @@
-package algorithms;
+package API.algorithms;
 
 /**
  * SelectionSort.java
@@ -15,8 +15,6 @@ package algorithms;
  */
 
 public class SelectionSort extends Sorter{
-
-    @Override
     public <T extends Comparable<? super T>> void sort(T[] a) {
         for(int i = 0; i < a.length; i++){
             int min = i;

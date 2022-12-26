@@ -1,4 +1,4 @@
-package algorithms;
+package API.algorithms;
 
 /**
  * MergeSort.java
@@ -15,15 +15,7 @@ package algorithms;
  */
 
 public class MergeSort extends Sorter{
-
-    @Override
-    public <T extends Comparable<? super T>> void sort(T[] a) {
-        // Generic array creation is not possible! (grr)
-        Comparable[] b = new Comparable[a.length];
-        sort(a,b,0,a.length-1);
-    }
-
-    private <T extends Comparable<? super T>> void sort(T[] a, T[] b, int low, int high) {
+    public <T extends Comparable<? super T>> void sort(T[] a, T[] b, int low, int high) {
         if(low < high){
             int middle = (low+high) / 2;
             sort(a,b,low,middle);

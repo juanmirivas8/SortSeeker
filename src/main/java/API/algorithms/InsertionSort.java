@@ -1,4 +1,4 @@
-package algorithms;
+package API.algorithms;
 
 /**
  * InsertionSort.java
@@ -15,7 +15,6 @@ package algorithms;
 
 public class InsertionSort extends Sorter{
 
-    @Override
     public <T extends Comparable<? super T>> void sort(T[] a) {
         for(int i = 1; i < a.length; i++){
             int j = i;

@@ -1,4 +1,4 @@
-package algorithms;
+package API.algorithms;
 
 /**
  * QuickSort.java
@@ -15,13 +15,7 @@ package algorithms;
  */
 
 public class QuickSort extends Sorter{
-
-    @Override
-    public <T extends Comparable<? super T>> void sort(T[] a) {
-        sort(a, 0, a.length-1);
-    }
-
-    private <T extends Comparable<? super T>> void sort(T[] a, int s_low, int s_high) {
+    public <T extends Comparable<? super T>> void sort(T[] a, int s_low, int s_high) {
         int low = s_low;
         int high = s_high;
         if(low == high-1){

@@ -1,4 +1,4 @@
-package algorithms;
+package API.algorithms;
 
 
 
@@ -171,46 +171,53 @@ public class Sort {
         shellSort(b);
         return OArrays.toPrimitiveArray(b);
     }
-    public static <T extends Comparable<? super T>> void mergeSort(T[] a){
-        (new MergeSort()).sort(a);
+    public static <T extends Comparable<? super T>> void mergeSort(T[] a, T[]b){
+        (new MergeSort()).sort(a,b, 0, a.length - 1);
     }
     public static int[] mergeSort(int[] a){
         Integer[] b = OArrays.toObjectArray(a);
-        mergeSort(b);
+        Integer[] c = new Integer[a.length];
+        mergeSort(b,c);
         return OArrays.toPrimitiveArray(b);
     }
     public static long[] mergeSort(long[] a){
         Long[] b = OArrays.toObjectArray(a);
-        mergeSort(b);
+        Long[] c = new Long[a.length];
+        mergeSort(b,c);
         return OArrays.toPrimitiveArray(b);
     }
     public static double[] mergeSort(double[] a){
         Double[] b = OArrays.toObjectArray(a);
-        mergeSort(b);
+        Double[] c = new Double[a.length];
+        mergeSort(b,c);
         return OArrays.toPrimitiveArray(b);
     }
     public static float[] mergeSort(float[] a){
         Float[] b = OArrays.toObjectArray(a);
-        mergeSort(b);
+        Float[] c = new Float[a.length];
+        mergeSort(b,c);
         return OArrays.toPrimitiveArray(b);
     }
     public static char[] mergeSort(char[] a){
         Character[] b = OArrays.toObjectArray(a);
-        mergeSort(b);
+        Character[] c = new Character[a.length];
+        mergeSort(b,c);
         return OArrays.toPrimitiveArray(b);
     }
     public static boolean[] mergeSort(boolean[] a){
         Boolean[] b = OArrays.toObjectArray(a);
-        mergeSort(b);
+        Boolean[] c = new Boolean[a.length];
+        mergeSort(b,c);
         return OArrays.toPrimitiveArray(b);
     }
     public static byte[] mergeSort(byte[] a){
         Byte[] b = OArrays.toObjectArray(a);
-        mergeSort(b);
+        Byte[] c = new Byte[a.length];
+        mergeSort(b,c);
         return OArrays.toPrimitiveArray(b);
     }
     public static <T extends Comparable<? super T>> void quickSort(T[] a){
-        (new QuickSort()).sort(a);
+        (new QuickSort()).sort(a, 0, a.length - 1);
     }
     public static int[] quickSort(int[] a){
         Integer[] b = OArrays.toObjectArray(a);

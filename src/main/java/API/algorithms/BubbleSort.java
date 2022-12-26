@@ -1,4 +1,4 @@
-package algorithms;
+package API.algorithms;
 
 /**
  * BubbleSort.java
@@ -14,8 +14,6 @@ package algorithms;
  */
 
 public class BubbleSort extends Sorter{
-    
-    @Override
     public <T extends Comparable<? super T>> void sort(T[] a){
         boolean swapped = true;
         int i = a.length-1;
