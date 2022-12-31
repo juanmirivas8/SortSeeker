@@ -1,4 +1,4 @@
-package API.algorithms;
+package API.arraySorting;
 
 /**
  * MergeSort.java

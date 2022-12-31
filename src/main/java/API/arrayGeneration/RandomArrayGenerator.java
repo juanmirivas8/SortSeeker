@@ -1,31 +1,22 @@
-package API.algorithms;
+package API.arrayGeneration;
 
-import API.model.Algorithm;
-import API.model.RequestData;
+import API.CPUExecutor;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-public class Generator {
+public class RandomArrayGenerator {
     private ExecutorService executorService;
     private int avaliableProcessors;
 
-    public Generator() {
-        avaliableProcessors = Runtime.getRuntime().availableProcessors();
-        executorService = Executors.newFixedThreadPool(avaliableProcessors);
+    public RandomArrayGenerator() {
+        CPUExecutor cpuExecutor = CPUExecutor.getInstance();
+        avaliableProcessors = cpuExecutor.getAvaliableProcessors();
+        executorService = cpuExecutor.getExecutor();
     }
 
-    public int[] generateRandomArraySingleThread(int size, int min, int max) {
-        int[] array = new int[size];
-        fillArray(array, 0, size - 1, min, max);
-        return array;
-    }
-
-    public int[] generateRandomArrayMultiThread(int size, int min, int max) {
+    public int[] generateRandomArray(int size, int min, int max) {
         CountDownLatch countDownLatch = new CountDownLatch(avaliableProcessors);
         int[] array = new int[size];
         int chunkSize = size / avaliableProcessors;
@@ -53,22 +44,6 @@ public class Generator {
             throw new RuntimeException(e);
         }
         return array;
-    }
-
-
-
-    private void fillArray(int[] array, int startIndex, int endIndex, int min, int max) {
-        for (int i = startIndex; i <= endIndex; i++) {
-            array[i] = (int) (Math.random() * (max - min + 1) + min);
-        }
-    }
-
-    public int[][] generateCopiesSingleThread(int[] array, int copies) {
-        int[][] copiesArray = new int[copies][array.length];
-        for (int i = 0; i < copies; i++) {
-            System.arraycopy(array, 0, copiesArray[i], 0, array.length);
-        }
-        return copiesArray;
     }
 
 }

@@ -4,7 +4,7 @@
  * Copyright 2008 Stijn Strickx, All rights reserved
  */
 
-package API.algorithms;
+package API.arraySorting;
 
 public class OArrays {
     

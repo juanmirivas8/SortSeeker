@@ -1,21 +1,16 @@
-import API.algorithms.Generator;
-import API.algorithms.Sort;
+
+import API.arrayGeneration.RandomArrayGenerator;
+import API.arraySorting.Sort;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class AlgorithmsTest {
-    private Generator generator = new Generator();
-
-    @Test
-    public void generateRandomArraySingleThread() {
-        int [] array = generator.generateRandomArraySingleThread(100000000, 1, 100);
-    }
-
+    private final RandomArrayGenerator randomArrayGenerator = new RandomArrayGenerator();
     @Test
     public void generateRandomArrayMultiThread() throws InterruptedException {
-        int [] array = generator.generateRandomArrayMultiThread(100000000, 1, 100);
+        int [] array = randomArrayGenerator.generateRandomArray(100000000, 1, 100);
         assertEquals(100000000, array.length);
         for (int i = 0; i < array.length; i++) {
             assert(array[i] >= 1 && array[i] <= 100);
@@ -24,7 +19,7 @@ public class AlgorithmsTest {
 
     @Test
     public void testBubbleSort(){
-        int [] array = generator.generateRandomArrayMultiThread(100, 1, 100);
+        int [] array = randomArrayGenerator.generateRandomArray(100, 1, 100);
         int [] sortedArray = Sort.bubbleSort(array);
         for (int i = 0; i < sortedArray.length - 1; i++) {
             assert(sortedArray[i] <= sortedArray[i + 1]);
@@ -33,7 +28,7 @@ public class AlgorithmsTest {
 
     @Test
     public void testInsertionSort(){
-        int [] array = generator.generateRandomArrayMultiThread(100, 1, 100);
+        int [] array = randomArrayGenerator.generateRandomArray(100, 1, 100);
         int [] sortedArray = Sort.insertionSort(array);
         for (int i = 0; i < sortedArray.length - 1; i++) {
             assert(sortedArray[i] <= sortedArray[i + 1]);
@@ -42,7 +37,7 @@ public class AlgorithmsTest {
 
     @Test
     public void testMergeSort(){
-        int [] array = generator.generateRandomArrayMultiThread(100, 1, 100);
+        int [] array = randomArrayGenerator.generateRandomArray(100, 1, 100);
         int [] sortedArray = Sort.mergeSort(array);
         for (int i = 0; i < sortedArray.length - 1; i++) {
             assert(sortedArray[i] <= sortedArray[i + 1]);
@@ -51,7 +46,7 @@ public class AlgorithmsTest {
 
     @Test
     public void testQuickSort(){
-        int [] array = generator.generateRandomArrayMultiThread(1000, 1, 100);
+        int [] array = randomArrayGenerator.generateRandomArray(1000, 1, 100);
         int [] sortedArray = Sort.quickSort(array);
         for (int i = 0; i < sortedArray.length - 1; i++) {
             assert(sortedArray[i] <= sortedArray[i + 1]);
@@ -60,7 +55,7 @@ public class AlgorithmsTest {
 
     @Test
     public void testSelectionSort(){
-        int [] array = generator.generateRandomArrayMultiThread(100, 1, 100);
+        int [] array = randomArrayGenerator.generateRandomArray(100, 1, 100);
         int [] sortedArray = Sort.selectionSort(array);
         for (int i = 0; i < sortedArray.length - 1; i++) {
             assert(sortedArray[i] <= sortedArray[i + 1]);
@@ -69,17 +64,11 @@ public class AlgorithmsTest {
 
     @Test
     public void testShellSort(){
-        int [] array = generator.generateRandomArrayMultiThread(100, 1, 100);
+        int [] array = randomArrayGenerator.generateRandomArray(100, 1, 100);
         int [] sortedArray = Sort.shellSort(array);
         for (int i = 0; i < sortedArray.length - 1; i++) {
             assert(sortedArray[i] <= sortedArray[i + 1]);
         }
     }
-
-
-
-
-
-
 
 }

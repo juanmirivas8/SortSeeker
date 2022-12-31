@@ -1,43 +1,49 @@
 package API.model;
 
-public class RequestData {
-    private Long minElements;
-    private Long maxElements;
-    private Long step;
+import java.io.Serializable;
+
+public class RequestData implements Serializable {
+    private Integer minElements;
+    private Integer maxElements;
+    private Integer step;
     private Long computingTime;
     private Algorithm algorithm;
 
-    public RequestData() {}
+    private Boolean multiThreaded;
 
-    public RequestData(Long minElements, Long maxElements, Long step, Long computingTime, Algorithm algorithm) {
+    public RequestData() {
+    }
+
+    public RequestData(Integer minElements, Integer maxElements, Integer step, Long computingTime, Algorithm algorithm, Boolean multiThread) {
         this.minElements = minElements;
         this.maxElements = maxElements;
         this.step = step;
         this.computingTime = computingTime;
         this.algorithm = algorithm;
+        this.multiThreaded = multiThread;
     }
 
-    public Long getMinElements() {
+    public Integer getMinElements() {
         return minElements;
     }
 
-    public void setMinElements(Long minElements) {
+    public void setMinElements(Integer minElements) {
         this.minElements = minElements;
     }
 
-    public Long getMaxElements() {
+    public Integer getMaxElements() {
         return maxElements;
     }
 
-    public void setMaxElements(Long maxElements) {
+    public void setMaxElements(Integer maxElements) {
         this.maxElements = maxElements;
     }
 
-    public Long getStep() {
+    public Integer getStep() {
         return step;
     }
 
-    public void setStep(Long step) {
+    public void setStep(Integer step) {
         this.step = step;
     }
 
@@ -55,6 +61,14 @@ public class RequestData {
 
     public void setAlgorithm(Algorithm algorithm) {
         this.algorithm = algorithm;
+    }
+
+    public Boolean getMultiThreaded() {
+        return multiThreaded;
+    }
+
+    public void setMultiThreaded(Boolean multiThreaded) {
+        this.multiThreaded = multiThreaded;
     }
 }
 

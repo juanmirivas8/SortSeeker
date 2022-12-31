@@ -12,8 +12,6 @@ public class ResultService {
         this.resultRepository = resultRepository;
     }
     private final ResultRepository resultRepository;
-
-
     public void saveResult(Result r) {
         resultRepository.save(r);
     }
