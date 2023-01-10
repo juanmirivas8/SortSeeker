@@ -17,7 +17,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
 @RestController
-@CrossOrigin(methods = {RequestMethod.GET,RequestMethod.DELETE,RequestMethod.PUT}, origins = "*")
+@CrossOrigin(methods = {RequestMethod.GET,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.POST}, origins = "*",
+        allowedHeaders = "*", allowCredentials = "true",exposedHeaders = "Access-Control-Allow-Origin"
+)
 @RequestMapping("/requestSort")
 public class RequestSortController {
     @Autowired
