@@ -64,7 +64,7 @@ public class AlgorithmsTest {
 
     @Test
     public void testShellSort(){
-        int [] array = randomArrayGenerator.generateRandomArray(100, 1, 100);
+        int [] array = randomArrayGenerator.generateRandomArray(10000, 1, 100);
         int [] sortedArray = Sort.shellSort(array);
         for (int i = 0; i < sortedArray.length - 1; i++) {
             assert(sortedArray[i] <= sortedArray[i + 1]);

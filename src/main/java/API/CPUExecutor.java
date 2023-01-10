@@ -5,8 +5,8 @@ import java.util.concurrent.Executors;
 
 public class CPUExecutor {
     private static CPUExecutor instance = null;
-    private ExecutorService executor;
-    private int avaliableProcessors;
+    private final ExecutorService executor;
+    private final int avaliableProcessors;
 
     private CPUExecutor() {
         avaliableProcessors = Runtime.getRuntime().availableProcessors();

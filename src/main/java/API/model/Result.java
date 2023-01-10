@@ -1,5 +1,6 @@
 package API.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
@@ -8,7 +9,11 @@ public class Result implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    private RequestResult requestResult;
     @Column
     private Integer nElements;
     @Column
@@ -16,18 +21,13 @@ public class Result implements Serializable {
     @Enumerated(EnumType.ORDINAL)
     private Algorithm algorithm;
 
-    @Column
-    private Boolean multiThreaded;
-
-    public Result(Integer nElements, Long computedTime, Algorithm algorithm, Boolean multiThreaded) {
+    public Result(Integer nElements, Long computedTime, Algorithm algorithm) {
         this.nElements = nElements;
         this.computedTime = computedTime;
         this.algorithm = algorithm;
-        this.multiThreaded = multiThreaded;
     }
 
     public Result() {
-
     }
 
     public Long getId() {
@@ -62,12 +62,12 @@ public class Result implements Serializable {
         this.algorithm = algorithm;
     }
 
-    public Boolean getMultiThreaded() {
-        return multiThreaded;
+    public RequestResult getRequestResult() {
+        return requestResult;
     }
 
-    public void setMultiThreaded(Boolean multiThreaded) {
-        this.multiThreaded = multiThreaded;
+    public void setRequestResult(RequestResult requestResult) {
+        this.requestResult = requestResult;
     }
 
     @Override

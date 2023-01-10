@@ -4,6 +4,7 @@ import API.CPUExecutor;
 import API.arrayGeneration.ArrayBuffer;
 import API.arrayGeneration.Producer;
 import API.model.RequestData;
+import API.model.RequestResult;
 import API.model.Result;
 
 import java.lang.management.ManagementFactory;
@@ -16,24 +17,25 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
 public class HandleRequest implements Callable<List<Result>> {
-    private RequestData requestData;
-    private ArrayBuffer arrayBuffer;
-    private Producer producer;
+    private final RequestData requestData;
+    private final ArrayBuffer arrayBuffer;
+    private final Producer producer;
 
-    private ExecutorService executorService;
+    private final ExecutorService executorService;
 
     public HandleRequest(RequestData request){
         this.requestData = request;
         this.arrayBuffer = new ArrayBuffer(20);
         this.producer = new Producer(arrayBuffer,request);
-        executorService = CPUExecutor.getInstance().getExecutor();
+        this.executorService = CPUExecutor.getInstance().getExecutor();
     }
 
     @Override
-    public List<Result> call() {return requestData.getMultiThreaded()? sortMultiThreaded():sortSingleThreaded(); }
+    public List<Result> call() {return sortSingleThreaded(); }
 
     private List<Result> sortSingleThreaded() {
         List<Result> results = new ArrayList<>();
+        RequestResult requestResult = new RequestResult(requestData);
         ThreadMXBean threadMXBean = ManagementFactory.getThreadMXBean();
         producer.startProducing();
 
@@ -47,40 +49,21 @@ public class HandleRequest implements Callable<List<Result>> {
             });
             try {
                 Long timeElapsed = time.get();
-                Result r = new Result(array.length, timeElapsed, requestData.getAlgorithm(),requestData.getMultiThreaded());
+                Result r = new Result(array.length, timeElapsed, requestData.getAlgorithm());
                 results.add(r);
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }
         }
-
         return results;
     }
-
-    private List<Result> sortMultiThreaded() {
-        List<Result> results = new ArrayList<>();
-        producer.startProducing();
-
-        return results;
-    }
-
     private void executeSort(int[] array){
-        switch (requestData.getAlgorithm()){
-            case BUBBLE_SORT:
-                Sort.bubbleSort(array);
-                break;
-            case INSERTION_SORT:
-                Sort.insertionSort(array);
-                break;
-            case MERGE_SORT:
-                Sort.mergeSort(array);
-                break;
-            case QUICK_SORT:
-                Sort.quickSort(array);
-                break;
-            case SELECTION_SORT:
-                Sort.selectionSort(array);
-                break;
+        switch (requestData.getAlgorithm()) {
+            case BUBBLE_SORT -> Sort.bubbleSort(array);
+            case INSERTION_SORT -> Sort.insertionSort(array);
+            case MERGE_SORT -> Sort.mergeSort(array);
+            case QUICK_SORT -> Sort.quickSort(array);
+            case SELECTION_SORT -> Sort.selectionSort(array);
         }
     }
 }

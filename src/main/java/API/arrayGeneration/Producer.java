@@ -7,20 +7,20 @@ import java.util.concurrent.ExecutorService;
 
 public class Producer {
 
-    private ArrayBuffer buffer;
+    private final ArrayBuffer buffer;
     private Boolean isRunning;
 
-    private RequestData requestData;
+    private final RequestData requestData;
 
-    private RandomArrayGenerator randomArrayGenerator;
-    private ExecutorService executorService;
+    private final RandomArrayGenerator randomArrayGenerator;
+    private final ExecutorService executorService;
 
     public Producer(ArrayBuffer buffer, RequestData request) {
         this.buffer = buffer;
         this.isRunning = true;
         this.requestData = request;
         this.randomArrayGenerator = new RandomArrayGenerator();
-        executorService = CPUExecutor.getInstance().getExecutor();
+        this.executorService = CPUExecutor.getInstance().getExecutor();
     }
 
     public void startProducing(){

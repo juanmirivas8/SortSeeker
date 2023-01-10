@@ -1,26 +1,28 @@
 package API.model;
 
+import jakarta.persistence.Embeddable;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
+@Embeddable
 
 public class RequestData implements Serializable {
     private Integer minElements;
     private Integer maxElements;
     private Integer step;
-    private Long computingTime;
     private Algorithm algorithm;
 
-    private Boolean multiThreaded;
+    private LocalDateTime date;
 
     public RequestData() {
     }
 
-    public RequestData(Integer minElements, Integer maxElements, Integer step, Long computingTime, Algorithm algorithm, Boolean multiThread) {
+    public RequestData(Integer minElements, Integer maxElements, Integer step, Algorithm algorithm, LocalDateTime date) {
         this.minElements = minElements;
         this.maxElements = maxElements;
         this.step = step;
-        this.computingTime = computingTime;
         this.algorithm = algorithm;
-        this.multiThreaded = multiThread;
+        this.date = date;
     }
 
     public Integer getMinElements() {
@@ -47,14 +49,6 @@ public class RequestData implements Serializable {
         this.step = step;
     }
 
-    public Long getComputingTime() {
-        return computingTime;
-    }
-
-    public void setComputingTime(Long computingTime) {
-        this.computingTime = computingTime;
-    }
-
     public Algorithm getAlgorithm() {
         return algorithm;
     }
@@ -63,12 +57,12 @@ public class RequestData implements Serializable {
         this.algorithm = algorithm;
     }
 
-    public Boolean getMultiThreaded() {
-        return multiThreaded;
+    public LocalDateTime getDate() {
+        return date;
     }
 
-    public void setMultiThreaded(Boolean multiThreaded) {
-        this.multiThreaded = multiThreaded;
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 }
 
