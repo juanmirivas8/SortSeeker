@@ -7,6 +7,7 @@ import API.model.RequestResult;
 import API.model.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import API.services.ResultService;
 
@@ -17,9 +18,6 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
 @RestController
-@CrossOrigin(methods = {RequestMethod.GET,RequestMethod.DELETE,RequestMethod.PUT,RequestMethod.POST}, origins = "*",
-        allowedHeaders = "*", allowCredentials = "true",exposedHeaders = "Access-Control-Allow-Origin"
-)
 @RequestMapping("/requestSort")
 public class RequestSortController {
     @Autowired
@@ -32,17 +30,17 @@ public class RequestSortController {
     private final ExecutorService executor;
 
     @PostMapping ()
-    public RequestResult sort(@RequestBody RequestData request) throws ExecutionException, InterruptedException {
+    public ResponseEntity<RequestResult> sort(@RequestBody RequestData request) throws ExecutionException, InterruptedException {
         RequestResult r = new RequestResult(request);
         HandleRequest handleRequest = new HandleRequest(request);
         r.setResults(CompletableFuture.supplyAsync(handleRequest::call,executor).get());
         resultService.saveResult(r);
-        return r;
+        return new ResponseEntity<>(r, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public RequestResult getResult(@PathVariable Long id){
-        return resultService.getResult(id);
+    public ResponseEntity<RequestResult> getResult(@PathVariable Long id){
+        return new ResponseEntity<>(resultService.getResult(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -52,8 +50,8 @@ public class RequestSortController {
     }
 
     @GetMapping("/all")
-    public List<RequestResult> getAllResults(){
-        return resultService.getAllResults();
+    public ResponseEntity<List<RequestResult>> getAllResults(){
+        return new ResponseEntity<>(resultService.getAllResults(), HttpStatus.OK);
     }
 
 }
