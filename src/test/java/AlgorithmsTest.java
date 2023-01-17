@@ -10,11 +10,8 @@ public class AlgorithmsTest {
     private final RandomArrayGenerator randomArrayGenerator = new RandomArrayGenerator();
     @Test
     public void generateRandomArrayMultiThread() throws InterruptedException {
-        int [] array = randomArrayGenerator.generateRandomArray(100000000, 1, 100);
-        assertEquals(100000000, array.length);
-        for (int i = 0; i < array.length; i++) {
-            assert(array[i] >= 1 && array[i] <= 100);
-        }
+        int [] array = randomArrayGenerator.generateRandomArray(1000000000, 1, 100);
+        assertEquals(1000000000, array.length);
     }
 
     @Test

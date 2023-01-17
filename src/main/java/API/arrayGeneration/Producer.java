@@ -1,6 +1,7 @@
 package API.arrayGeneration;
 
 import API.CPUExecutor;
+import API.arraySorting.HandleRequest;
 import API.model.RequestData;
 
 import java.util.concurrent.ExecutorService;
@@ -26,15 +27,18 @@ public class Producer {
     public void startProducing(){
         executorService.execute(()->{
             Integer actualSize = requestData.getMinElements();
+            System.out.println("Producer started");
             while (isRunning){
                 if (actualSize <= requestData.getMaxElements()){
                     int[] array = randomArrayGenerator.generateRandomArray(actualSize, 0, 100);
                     buffer.put(array);
+                    System.out.println("Produced array of size: " + array.length);
                     actualSize += requestData.getStep();
                 } else {
                     stopProducing();
                 }
             }
+            System.out.println("Producer stopped");
         });
     }
 

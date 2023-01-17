@@ -20,11 +20,15 @@ public class RandomArrayGenerator {
         CountDownLatch countDownLatch = new CountDownLatch(avaliableProcessors);
         int[] array = new int[size];
         int chunkSize = size / avaliableProcessors;
+        //Random object for all tasks
+        //Random random = new Random();
         for (int i = 0; i < avaliableProcessors; i++) {
             final int startIndex = i * chunkSize;
             final int endIndex = (i + 1) * chunkSize;
             int finalI = i;
+
             executorService.execute(() -> {
+                //Random object in every task
                 Random random = new Random();
                 if (finalI == avaliableProcessors - 1) {
                     for(int j = startIndex; j < array.length; j++) {

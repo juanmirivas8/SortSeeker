@@ -17,7 +17,8 @@ public class ProducerConsumerTest {
 
         while (producer.getRunning()||!buffer.isEmpty()){
             Thread.sleep(1000);
-            System.out.println(buffer.take().length);
+            Integer size = buffer.take().length;
+            System.out.println("Consumed array of size: "+size);
         }
     }
 }
